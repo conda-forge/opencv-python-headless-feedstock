@@ -10,9 +10,9 @@ source:
   sha256: 996eb282ca4b43ec6a3972414de0e2331f5d9cda2b41091a49739c19fb843798
   patches:
       # https://github.com/opencv/opencv/pull/26786
-      - patches_opencv/0001-fix_pcc64le_build_with_newer_gcc.patch
+      - patches/0001-fix_pcc64le_build_with_newer_gcc.patch
       # https://github.com/opencv/opencv/pull/26750
-      - patches_opencv/0002-fix-vsx-ppc64le.patch
+      - patches/0002-fix-vsx-ppc64le.patch
 
 build:
   skip: true  # [win]
