@@ -8,11 +8,16 @@ package:
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/opencv-python-headless-{{ version }}.tar.gz
   sha256: 996eb282ca4b43ec6a3972414de0e2331f5d9cda2b41091a49739c19fb843798
+  # patches:
+  #     # https://github.com/opencv/opencv/pull/26786
+  #     - patches/0001-fix_pcc64le_build_with_newer_gcc.patch
+  #     # https://github.com/opencv/opencv/pull/26750
+  #     - patches/0002-fix-vsx-ppc64le.patch
 
 build:
   skip: true  # [win]
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 1
+  number: 2
   missing_dso_whitelist:  # [linux]
     - /lib64/ld-linux-x86-64.so.2  # [linux]
     - /lib64/libc.so.6  # [linux]
@@ -27,10 +32,18 @@ requirements:
     - {{ stdlib('c') }}  # [not win]
     - cmake
     - make  # [unix]
+    - python  # [build_platform != target_platform]
+    - cross-python_{{ target_platform }}  # [build_platform != target_platform]
+    - numpy ==1.13.3  # [py==36 and build_platform != target_platform]
+    - numpy ==1.17.0  # [py==37 and build_platform != target_platform]
+    - numpy ==1.17.5  # [py==38 and build_platform != target_platform]
+    - numpy ==1.19.3  # [py<39 and linux and build_platform != target_platform]
+    - numpy ==1.21.0  # [py<39 and darwin and build_platform != target_platform]
+    - numpy >=2.0.0  # [py>=39 and build_platform != target_platform]
   host:
     - python
     - sysroot_linux-64  # [linux]
-    - libgcc-ng  # [linux]
+    - libgcc  # [linux]
     - numpy ==1.13.3  # [py==36]
     - numpy ==1.17.0  # [py==37]
     - numpy ==1.17.5  # [py==38]
@@ -46,7 +59,7 @@ requirements:
     - cmake
     - python
     - sysroot_linux-64  # [linux]
-    - libgcc-ng  # [linux]
+    - libgcc  # [linux]
     - numpy >=1.13.3  # [py<37]
     - numpy >=1.21.0  # [py<=39 and osx]
     - numpy >=1.21.2  # [py>=310]
