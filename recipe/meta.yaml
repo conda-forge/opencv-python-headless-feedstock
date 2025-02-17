@@ -30,7 +30,7 @@ requirements:
   host:
     - python
     - sysroot_linux-64  # [linux]
-    - libgcc-ng  # [linux]
+    - libgcc  # [linux]
     - numpy ==1.13.3  # [py==36]
     - numpy ==1.17.0  # [py==37]
     - numpy ==1.17.5  # [py==38]
