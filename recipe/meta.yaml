@@ -8,11 +8,11 @@ package:
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/opencv-python-headless-{{ version }}.tar.gz
   sha256: 996eb282ca4b43ec6a3972414de0e2331f5d9cda2b41091a49739c19fb843798
-  patches:
-      # https://github.com/opencv/opencv/pull/26786
-      - patches/0001-fix_pcc64le_build_with_newer_gcc.patch
-      # https://github.com/opencv/opencv/pull/26750
-      - patches/0002-fix-vsx-ppc64le.patch
+  # patches:
+  #     # https://github.com/opencv/opencv/pull/26786
+  #     - patches/0001-fix_pcc64le_build_with_newer_gcc.patch
+  #     # https://github.com/opencv/opencv/pull/26750
+  #     - patches/0002-fix-vsx-ppc64le.patch
 
 build:
   skip: true  # [win]
