@@ -59,7 +59,7 @@ requirements:
     - cmake
     - python
     - sysroot_linux-64  # [linux]
-    - libgcc-ng  # [linux]
+    - libgcc  # [linux]
     - numpy >=1.13.3  # [py<37]
     - numpy >=1.21.0  # [py<=39 and osx]
     - numpy >=1.21.2  # [py>=310]
